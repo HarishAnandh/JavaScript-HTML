@@ -1,0 +1,107 @@
+<html>
+<head>
+    <title>
+        CALCULATOR
+    </title>
+    <style>
+      div{
+        text-align: center;
+        margin-top: 30%;
+        background-color: rgb(184, 184, 184);
+        border: 10px double black;
+        border-radius: 30px;
+        padding: 10px;
+        width: 300px;
+        height: 400px;
+       margin: 30%;
+      }
+      button{
+        border: 5px solid grey;
+        border-radius: 100%;
+        width: 60px;
+        height: 60px;
+      }
+      button:hover{
+        transform: scale(1.3);
+      }
+      #sum{
+        background-color: rgb(235, 117, 229);
+      }
+      #difference{
+        background-color: rgb(235, 227, 117);
+      }
+      #product{
+        background-color: rgb(117, 235, 123);
+      }
+      #division{
+        background-color: rgb(117, 235, 206);
+      }
+      h2{
+        background-color: aliceblue;
+        border:5px solid grey;
+        padding: 2px;
+        border-radius: 30px;
+        color: grey;
+      }
+      input{
+        background-color: aliceblue;
+        border:5px solid grey;
+        padding: 2px;
+        border-radius: 30px;
+      }
+      #a{
+        border-radius: 30px;
+        background-color: yellow;
+        border:5px solid rgb(194, 114, 9);
+      }
+    </style>
+    
+</head>
+
+<body>
+    <h1>BASIC CALCULATOR:</h1>
+    <div>
+    <h2 id="sed">THE ANSWER WILL BE DISPLAYED HERE</h2><br>
+    <input type="text" placeholder="enter the number 1" id="n1"><br><br>
+    <input type="text" placeholder="enter the number 2" id="n2"><br><br>
+    <button id="sum" onclick="sum()">+</button>
+    <button id="product" onclick="product()">X</button>
+    <button id="difference" onclick="diff()">-</button>
+    <button id="division" onclick="div()">/</button><br><br>
+    
+</div>
+<script type="text/javascript">
+      function sum(){
+        var x = document.getElementById("sed");
+        var number1 = parseFloat(document.getElementById("n1").value);
+        var number2 = parseFloat(document.getElementById("n2").value);
+        
+        var sum = number1 + number2;
+        x.innerHTML=sum;}
+        function product(){
+        var x = document.getElementById("sed");
+        var number1 = parseFloat(document.getElementById("n1").value);
+        var number2 = parseFloat(document.getElementById("n2").value);
+        
+        var product = number1 * number2;
+        x.innerHTML=product;
+        
+    }
+    function diff(){
+        var x = document.getElementById("sed");
+        var number1 = parseFloat(document.getElementById("n1").value);
+        var number2 = parseFloat(document.getElementById("n2").value);
+        
+        var diff = number1 - number2;
+        x.innerHTML=diff;
+    }
+    function div(){
+        var x = document.getElementById("sed");
+        var number1 = parseFloat(document.getElementById("n1").value);
+        var number2 = parseFloat(document.getElementById("n2").value);
+        
+        var div = number1 / number2;
+        x.innerHTML= div;
+    }
+ </script>
+</body>

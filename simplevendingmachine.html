@@ -1,0 +1,171 @@
+
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <title>VENDING MACHINE</title>
+        <style>
+          .vend{
+            margin: 30%;
+            background-color: rgb(234, 89, 89);
+            padding: 50px;
+            width:350px;
+            height: 600px;
+            border: 5px solid grey;
+            border-radius: 30px;
+            padding-bottom: 50px;
+          }
+          th{
+            background-color: rgb(239, 238, 166);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding: 10px;
+            border: 3px solid black;
+            border-radius: 20px;
+          }
+          td{
+            background-color: bisque;
+            border: 2px solid brown;
+            padding-left: 20px;
+            border-radius: 20px;
+          }
+          .i{
+            background-color: rgba(189, 148, 88,0);
+            border: 0px;
+          }
+          img{
+            width: 50px;
+        
+          }
+          button{
+            background-color: rgba(234, 89, 89,0);
+            border: 0px;
+            transition: all 0.5s ease;
+          }
+          h2,h1{
+            background-color: aliceblue;
+            border: 3px solid grey;
+            color: grey;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+          }
+          h1{
+            font-size: 20px;
+          }
+          button:hover{
+            transform: scale(1.2);
+          }
+          table{
+            background-color: rgba(99, 8, 8, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+          }
+        </style>
+    </head>
+    <body>
+       <h1>SIMPLE VENDING MACHINE:</h1>
+       <div class="vend">
+        <h1>HECTOR FOODS</h1>
+        <table>
+            <tr>
+                <th>LAYS</th>
+                <th>KURKURE</th>
+                <th>CRAX</th>
+                <th>TY</th>
+                
+            </tr>
+            <tr>
+                <td class="i"><button id="lays" onclick="addTwenty()"><img src="https://purepng.com/public/uploads/large/purepng.com-lays-classic-potato-chips-packetfood-lays-potato-chips-941524637186e8txs.png"></button></td>
+                <td class="i"><button id="lays" onclick="addThirty()"><img src="https://fastpng.com/images/file/kurkure-ypdy2w0myl08ykka.png"></button></td>
+                <td class="i"><button id="lays" onclick="addTen()"><img src="https://crax.in/wp-content/uploads/2024/01/without-qr-crax-rings-sour-cream-onion-pack-shot-rs5-1-3-6593bdc0e6eb9.webp"></button></td>
+                <td class="i"><button id="lays" onclick="addThirty()"><img src="https://wallpapers.com/images/hd/too-yumm-karare-chilli-achari-snack-packet-sdwdbx9jxw8qnysy.png"></button></td>
+                
+            </tr>
+            <tr>
+                <td>&#8377; 20</td>
+                <td>&#8377; 30</td>
+                <td>&#8377; 10</td>
+                <td>&#8377; 30</td>
+                
+            </tr>
+            <tr>
+                <th>PUFF</th>
+                <th>DIARY</th>
+                <th>JUICE</th>
+                <th>SOUP</th>
+                
+            </tr>
+            <tr>
+                <td class="i"><button id="lays" onclick="addTen()"><img src="https://png.pngtree.com/png-clipart/20231112/original/pngtree-puff-pastry-puff-pastry-picture-image_13256611.png"></button></td>
+                <td class="i"><button id="lays" onclick="addTwenty()"><img src="https://wallpapers.com/images/hd/cadbury-dairy-milk-caramel-chocolate-bar-pbva0s2k0wwcvqjk-2.png"></button></td>
+                <td class="i"><button id="lays" onclick="addfifty()"><img src="https://th.bing.com/th/id/R.0091e889aa4e4eddab68c6930a335955?rik=QD%2bPC5nmgBvZOA&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fjuice-hd-png-juice-png-image-png-image-1974.png&ehk=qRFY%2fqTZoTmKI%2f%2btcs%2bRhxyJZLVg%2fcbTymVqUEcTTvw%3d&risl=&pid=ImgRaw&r=0"></button></td>
+                <td class="i"><button id="lays" onclick="addfifty()"><img src="https://www.freeiconspng.com/uploads/soup-png-image-6.png"></button></td>
+                
+            </tr>
+            <tr>
+                <td>&#8377; 10</td>
+                <td>&#8377; 20</td>
+                <td>&#8377; 50</td>
+                <td>&#8377; 50</td>
+                
+            </tr>
+            <tr>
+                <th>MAGGI</th>
+                <th>COFFEE</th>
+                <th>TEA</th>
+                <th>SANDWICH</th>
+               
+            </tr>
+            <tr>
+                <td class="i"><button id="lays" onclick="addtwentyfive()"><img src="https://toppng.com/uploads/thumbnail/maggi-free-s-11538608203gsp0ptuwqb.png"></button></td>
+                <td class="i"><button id="lays" onclick="addTwenty()"><img src="https://pngimg.com/uploads/mug_coffee/mug_coffee_PNG16821.png"></button></td>
+                <td class="i"><button id="lays" onclick="addThirty()"><img src="https://png.pngtree.com/png-clipart/20221219/original/pngtree-fresh-milk-tea-or-indian-kadak-chai-png-image_8781573.png"></button></td>
+                <td class="i"><button id="lays" onclick="addfortyfive()"><img src="https://th.bing.com/th/id/R.572f792b69099501639b54fc2eab2a18?rik=vVyuN8anAOSgwA&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fsandwich-png-hd-sandwich-png-image-sandwich-hd-png-2594.png&ehk=dSTMF7esFkl%2f%2b0haR5OKf6zoWKZlxAOXu6OG5epyINU%3d&risl=1&pid=ImgRaw&r=0"></button></td>
+                
+            </tr>
+            <tr>
+                <td>&#8377; 25</td>
+                <td>&#8377; 20</td>
+                <td>&#8377; 30</td>
+                <td>&#8377; 45</td>
+                
+            </tr>
+        </table>
+        <h2 id="totalr">AMOUNT TO BE PAID</h2>
+       </div>
+       <script type="text/javascript">
+         let total= 0;
+
+     function addTwenty() {
+    total += 20;
+    updateResult();
+}
+
+function addThirty() {
+            total += 30;
+            updateResult();
+        }
+        function addfifty() {
+            total += 50;
+            updateResult();
+        }
+
+        function addTen() {
+            total += 10;
+            updateResult();
+        }
+        function addfortyfive() {
+            total += 45;
+            updateResult();
+        }
+        function addtwentyfive() {
+            total += 25;
+            updateResult();
+        }
+
+    function updateResult() {
+    document.getElementById("totalr").innerHTML =`&#8377;${total}`;
+}
+       </script>
+    </body>
+</html>

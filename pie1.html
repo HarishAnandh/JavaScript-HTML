@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>PIE CHART CREATOR</title>
+        <meta charset="utf-8">
+        
+        <style>
+
+#output{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: conic-gradient(
+                green 120deg,
+                orange 0
+                );
+    border: 1px solid ;
+    margin-left: 40%;
+    display: none;
+}
+#output1{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: conic-gradient(
+                green 45deg,
+                orange 0
+                );
+    border: 1px solid ;
+    margin-left: 40%;
+    display: none;
+}
+#output2{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: conic-gradient(
+                green 180deg,
+                orange 0
+                );
+    border: 1px solid  ;
+    margin-left: 40%;
+    display: none;
+}
+#output3{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: conic-gradient(
+                green 280deg,
+                orange 0
+                );
+    border: 1px solid ;
+    margin-left: 40%;
+    display: none;
+}
+#output4{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: conic-gradient(
+                green 330deg,
+                orange 0
+                );
+    border: 1px solid ;
+    margin-left: 40%;
+    display: none;
+}
+#output5{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: conic-gradient(
+                green 90deg,
+                orange 0
+                );
+    border: 1px solid ;
+    margin-left: 40%;
+    display: none;
+}
+#output6{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: conic-gradient(
+                green 360deg,
+                orange 0
+                );
+    border: 1px solid;
+    margin-left: 40%;
+    display: none;
+}
+#output7{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: conic-gradient(
+                green 300deg,
+                orange 0
+                );
+    border: 1px solid ;
+    margin-left: 40%;
+    display: none;
+}
+#output8{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: conic-gradient(
+                green 10deg,
+                orange 0
+                );
+    border: 1px solid ;
+    margin-left: 40%;
+    display: none;
+}
+#output9{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: conic-gradient(
+                green 350deg,
+                orange 0
+                );
+    border: 1px solid ;
+    margin-left: 40%;
+    display: none;
+}
+#output10{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: conic-gradient(
+                green 100deg,
+                orange 0
+                );
+    border: 1px solid ;
+    margin-left: 40%;
+    display: none;
+}
+#output11{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: conic-gradient(
+                green 200deg,
+                orange 0
+                );
+    border: 1px solid ;
+    margin-left: 40%;
+    display: none;
+}
+
+
+body{
+    background-color: aqua;
+}
+h2{
+    background-color: bisque;
+    border: 10px double chocolate;
+    border-radius: 30px;
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    margin-left: 40%;
+    display: block;
+    padding-top: 30px;
+
+}
+div:hover{
+    transform: scale(1.3);
+}
+div{
+    transition: all 1s ease;
+}
+h1{
+    background-color: antiquewhite;
+    font-family: fantasy;
+    color: chocolate;
+    text-align: center;
+    border: 5px solid;
+    border-radius: 20px;
+}
+input{
+    text-align: center;
+    margin-left: 40%;
+    background-color: bisque;
+    border: 3px solid brown;
+    padding: 5px;
+    border-radius: 30px;
+}
+#out{
+    background-color: rgb(210, 172, 125);
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: brown;
+    margin-left: 20px;
+}
+p{
+    font-size: 10px;
+}
+.x{
+    font-family: fantasy;
+    text-align: center;
+    font-size: larger;
+}
+        </style>
+    </head>
+    <body>
+        <h1>
+            PIECHART CREATOR:
+         <p>profit calculator    -Harish Anandh</p>
+        </h1>
+        <form>
+            <p class="x">Enter the percentage of the singe variable:</p><br>
+            <input type="number" id="num" required>
+            <input type="button" id="out" onclick="start()" value="SUBMIT" required>
+        </form><br><br><br><br>
+        <div id="output">
+        </div><br>
+        <div id="output1">
+        </div>
+        <div id="output2">
+        </div>
+        <div id="output3">
+        </div>
+        <div id="output4">
+        </div>
+        <div id="output5">
+        </div>
+        <div id="output6">
+        </div>
+        <div id="output7">
+        </div>
+        <div id="output8">
+        </div>
+        <div id="output9">
+        </div>
+        <div id="output10">
+        </div>
+        <div id="output11">
+        </div>
+        <h2 id="text">
+            ....</h2>
+        <script type="text/javascript">
+          function start(){
+            let num = parseInt(document.getElementById('num').value);
+            let output = document.getElementById('output');
+            let output1 = document.getElementById('output1');
+            let output2 = document.getElementById('output2');
+            let output3 = document.getElementById('output3');
+            let text =   document.getElementById('text');
+            let rem = 100-num;
+            if(num>=10 && num<20){
+               output1.style.display= "block";
+               text.innerHTML=num+"%-green<br>"+rem+"%-orange<br>";
+            }
+            else{
+                output1.style.display= "none";
+            }
+            if(num>=40 && num<50){
+               output.style.display= "block";
+               text.innerHTML=num+"%-green<br>"+rem+"%-orange<br>";
+            }
+            else{
+                output.style.display= "none";
+            }
+            if(num==50){
+               output2.style.display= "block";
+               text.innerHTML=num+"%-green<br>"+rem+"%-orange<br>";
+            }
+            else{
+                output2.style.display= "none";
+            }
+            if(num>=70 && num<80){
+               output3.style.display= "block";
+               text.innerHTML=num+"%-green<br>"+rem+"%-orange<br>";
+            }
+            else{
+                output3.style.display= "none";
+            }
+            //if(num>=80 && num<90){
+             //  output4.style.display= "block";
+             //  text.innerHTML=num+"%<br>"+rem+"%<br>";
+           // }
+           // else{
+           //     output4.style.display= "none";
+          //  }
+            if(num>=90 && num<95){
+               output4.style.display= "block";
+               text.innerHTML=num+"%-green<br>"+rem+"%-orange<br>";
+            }
+            else{
+                output4.style.display= "none";
+            }
+            if(num==100){
+               output6.style.display= "block";
+               text.innerHTML=num+"%-green<br>"+rem+"%-orange<br>";
+            }
+            else{
+                output6.style.display= "none";
+            }
+            if(num>=80 && num<90){
+               output7.style.display= "block";
+               text.innerHTML=num+"%-green<br>"+rem+"%-orange<br>";
+            }
+            else{
+                output7.style.display= "none";
+            }
+            if(num<10&& num>0 ){
+               output8.style.display= "block";
+               text.innerHTML=num+"%-green<br>"+rem+"%-orange<br>";
+            }
+            else{
+                output8.style.display= "none";
+            }
+            if(num>=95 && num<100){
+               output9.style.display= "block";
+               text.innerHTML=num+"%-green<br>"+rem+"%-orange<br>";
+            }
+            else{
+                output9.style.display= "none";
+            }
+            if(num>=20 && num<40){
+               output10.style.display= "block";
+               text.innerHTML=num+"%-green<br>"+rem+"%-orange<br>";
+            }
+            else{
+                output10.style.display= "none";
+            }
+            if(num>50 && num<70){
+               output11.style.display= "block";
+               text.innerHTML=num+"%-green<br>"+rem+"%-orange<br>";
+            }
+            else{
+                output11.style.display= "none";
+            }
+
+        }
+        </script>
+    </body>
+</html>

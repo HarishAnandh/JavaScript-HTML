@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Pie Chart</title>
+    <style>
+        body {
+            font-family: sans-serif; /* Basic font */
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center items horizontally */
+            padding: 20px;
+        }
+
+        .chart-container {
+            display: flex;
+            flex-direction: column; /* Stack chart and legend */
+            align-items: center;
+            margin-bottom: 20px; /* Space below chart area */
+        }
+
+        .pie-chart {
+            width: 200px; /* Adjust as needed */
+            height: 200px; /* Should be equal to the width */
+            border-radius: 50%;
+            background-color: #ddd; /* Default background if no slices */
+            position: relative; /* For absolute positioning of slices */
+            overflow: hidden; /* Hide parts of slices outside the circle */
+            margin: 20px auto; /* Center the pie chart */
+            /* Accessibility: Hide potential text content visually but keep for screen readers if needed */
+            color: transparent;
+        }
+
+        .pie-slice {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            clip-path: polygon(50% 50%, 100% 50%, 100% 0); /* Default clip-path for slices <= 180deg */
+            transform-origin: 50% 50%; /* Rotate around the center */
+        }
+
+        .pie-chart-title {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .pie-legend {
+            list-style: none;
+            padding: 0;
+            margin: 10px auto; /* Spacing around legend */
+            width: fit-content; /* Adjust width to content */
+            text-align: left;
+        }
+
+        .pie-legend li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .pie-legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%; /* Make color swatch circular */
+            margin-right: 8px; /* Space between swatch and label */
+            flex-shrink: 0; /* Prevent swatch from shrinking */
+        }
+
+        /* Input Form Styles */
+        .input-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Space between input groups */
+            width: 100%;
+            max-width: 400px; /* Limit form width */
+            margin-bottom: 20px; /* Space below form */
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px; /* Rounded corners for the form */
+            background-color: #f9f9f9; /* Light background for the form */
+        }
+
+        .input-form label {
+            display: block; /* Labels on their own line */
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .input-form input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Include padding and border in width */
+        }
+
+        .input-form button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease; /* Smooth hover effect */
+        }
+
+        .input-form button:hover {
+            background-color: #0056b3;
+        }
+
+        #error-message {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+            min-height: 1.2em; /* Reserve space for error message */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="input-form">
+        <label for="data-values">Data Values (comma-separated, %):</label>
+        <input type="text" id="data-values" value="30, 20, 25, 15, 10">
+
+        <label for="data-colors">Colors (comma-separated hex codes):</label>
+        <input type="text" id="data-colors" value="#007bff, #28a745, #dc3545, #ffc107, #17a2b8">
+
+        <label for="data-labels">Labels (comma-separated):</label>
+        <input type="text" id="data-labels" value="Blue, Green, Red, Yellow, Cyan">
+
+        <button id="update-button">Update Chart</button>
+        <div id="error-message"></div>
+    </div>
+
+    <div class="chart-container">
+        <div class="pie-chart" aria-label="Pie Chart of Sample Data">
+            </div>
+        <div class="pie-chart-title">Sample Pie Chart</div>
+        <ul class="pie-legend">
+            </ul>
+    </div>
+
+    <script>
+        const pieChart = document.querySelector('.pie-chart');
+        const legend = document.querySelector('.pie-legend');
+        const valuesInput = document.getElementById('data-values');
+        const colorsInput = document.getElementById('data-colors');
+        const labelsInput = document.getElementById('data-labels');
+        const updateButton = document.getElementById('update-button');
+        const errorMessageDiv = document.getElementById('error-message');
+
+        function updatePieChart() {
+            // Clear previous chart and legend and error message
+            pieChart.innerHTML = '';
+            legend.innerHTML = '';
+            errorMessageDiv.textContent = ''; // Clear previous errors
+
+            // Get data from input fields
+            const valuesStr = valuesInput.value.trim();
+            const colorsStr = colorsInput.value.trim();
+            const labelsStr = labelsInput.value.trim();
+
+            // Basic check for empty inputs
+            if (!valuesStr || !colorsStr || !labelsStr) {
+                 errorMessageDiv.textContent = "Error: All input fields must be filled.";
+                 pieChart.style.backgroundColor = '#ddd'; // Reset background
+                 return;
+            }
+
+            const values = valuesStr.split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v)); // Parse to numbers, filter out NaN
+            const colors = colorsStr.split(',').map(c => c.trim());
+            const labels = labelsStr.split(',').map(l => l.trim());
+
+            // --- Input Validation ---
+            if (values.length === 0) {
+                errorMessageDiv.textContent = "Error: No valid numeric values provided.";
+                pieChart.style.backgroundColor = '#ddd';
+                return;
+            }
+
+            if (values.length !== colors.length || values.length !== labels.length) {
+                errorMessageDiv.textContent = "Error: The number of values, colors, and labels must match.";
+                pieChart.style.backgroundColor = '#ddd';
+                return;
+            }
+
+            const total = values.reduce((acc, val) => acc + val, 0);
+            // Use a small tolerance for floating point comparison
+            if (Math.abs(total - 100) > 0.01) {
+                errorMessageDiv.textContent = `Error: Values must add up to 100 (current total: ${total.toFixed(2)}).`;
+                pieChart.style.backgroundColor = '#ddd';
+                return;
+            }
+
+            // --- Generate Chart ---
+            let startAngle = 0;
+            //pieChart.style.backgroundColor = 'transparent'; // Make background transparent if drawing slices
+
+            values.forEach((value, index) => {
+                const sliceAngle = (value / 100) * 360;
+                const endAngle = startAngle + sliceAngle;
+
+                // Create Slice
+                const slice = document.createElement('div');
+                slice.classList.add('pie-slice');
+                slice.style.backgroundColor = colors[index]; // Set color for the slice
+                slice.style.transform = `rotate(${startAngle}deg)`;
+
+                // Adjust clip-path for slices > 180 degrees
+                // This requires creating two half-circles or using a more complex clip-path
+                if (sliceAngle > 180) {
+                    // Create a second element to cover the other half
+                    const sliceOver180 = document.createElement('div');
+                    sliceOver180.classList.add('pie-slice');
+                    sliceOver180.style.backgroundColor = colors[index];
+                    sliceOver180.style.transform = `rotate(${startAngle + 180}deg)`; // Rotate the second half
+                    // Clip the second half appropriately
+                    sliceOver180.style.clipPath = `polygon(50% 50%, 100% 50%, 100% 0)`; // Default clip
+                     // Adjust rotation for the second half's clip based on the remaining angle
+                    const remainingAngle = sliceAngle - 180;
+                    const clipAngleRad = (remainingAngle * Math.PI / 180);
+                    const clipX = 50 + 50 * Math.tan(clipAngleRad); // Calculate X coordinate for clip-path
+                    // Ensure clipX stays within bounds (0 to 100)
+                    const finalClipX = Math.max(0, Math.min(100, clipX));
+                    // Apply clip-path for the second half (handle angles > 180)
+                    // This part is complex with pure CSS clip-path for > 180.
+                    // A simpler approach might be needed, or use SVG/Canvas for >180 degrees.
+                    // For now, we'll use a simpler visual representation for > 180
+                    sliceOver180.style.clipPath = `polygon(50% 50%, 50% 0, 0 0, 0 50%)`; // Example clip for > 180 part
+                    pieChart.appendChild(sliceOver180);
+
+                    // The first slice now covers exactly 180 degrees
+                    slice.style.clipPath = `polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%)`; // Covers 180 degrees
+                } else {
+                     // Standard clip-path for slices <= 180 degrees
+                     const angleRad = (sliceAngle * Math.PI / 180);
+                     const x = 50 + 50 * Math.tan(angleRad);
+                     const y = 0; // Top edge
+
+                     // Calculate the clip-path points dynamically for better accuracy
+                     const endX = 50 + 50 * Math.cos(angleRad);
+                     const endY = 50 - 50 * Math.sin(angleRad); // Y decreases as angle increases
+
+                     // Clip path needs careful calculation based on angle
+                     // The simple polygon is often sufficient visually for smaller angles
+                     slice.style.clipPath = `polygon(50% 50%, 100% 50%, 100% 0)`; // Keep simple for now
+                }
+
+
+                pieChart.appendChild(slice);
+
+                // Create Legend Item
+                const legendItem = document.createElement('li');
+                const colorBox = document.createElement('span');
+                colorBox.classList.add('pie-legend-color');
+                colorBox.style.backgroundColor = colors[index];
+                legendItem.appendChild(colorBox);
+                legendItem.appendChild(document.createTextNode(`${labels[index]} (${value}%)`)); // Add percentage to label
+                legend.appendChild(legendItem);
+
+                startAngle = endAngle; // Update start angle for the next slice
+            });
+        }
+
+        // Add event listener to the button
+        updateButton.addEventListener('click', updatePieChart);
+
+        // Initial chart generation on page load
+        updatePieChart();
+
+    </script>
+</body>
+</html>
